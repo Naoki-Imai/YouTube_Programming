@@ -1,3 +1,6 @@
 <h1><%= @movie.title %></h1>
+<% link_to @movie.url, target: :_blank do  %>
+ <%= @movie.url %>
+<% end %>
 
 <p><<%= @movie.comment %></p>

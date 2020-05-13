@@ -25,10 +25,10 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item button" %>
         </p>
         <p class="content">
-          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
+          <%= link_to "おすすめ動画", movies_path, class: "nav-item button is-primary" %>
         </p>
         <p class="content">
-          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
+          <%= link_to "おすすめ動画紹介", new_movie_path, class: "nav-item button is-primary" %>
         </p>
       <% else %>
         <p class="content">
