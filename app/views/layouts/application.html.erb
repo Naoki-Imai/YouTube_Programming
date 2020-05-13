@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YouPro</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <nav class="navbar is-danger">
+      <div class="navbar-brand">
+        <%= link_to root_path class: "navbar-item" do %>
+          <h1 class="title is-dark is-4" style="font-family: fantasy;">Programming YouTube Learning</h1>
+        <% end %>
+        <%= link_to "ユーザ一覧", users_path, class: "nav-item button is-primary" %>
+      </div>
+
+      <% if user_signed_in? %>
+        <p class="content">
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item button" %>
+        </p>
+        <p class="content">
+          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
+        </p>
+        <p class="content">
+          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
+        </p>
+      <% else %>
+        <p class="content">
+          <%= link_to "ログイン", new_user_session_path, class: " nav-item button" %>
+        </p>
+        <p class="content">
+          <%= link_to "新規登録", new_user_registration_path, class: " nav-item button" %>
+        </p>
+      <% end %>
+    </nav>
+      
+    <%= yield %>
+  </body>
+</html>

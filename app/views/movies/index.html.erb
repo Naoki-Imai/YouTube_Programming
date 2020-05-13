@@ -1,0 +1,22 @@
+<h1>駆け出しエンジニアおすすめ動画</h1>
+<div class="container">
+    <div class="columns is-multiline">
+        <% @movies.each do |movie| %>
+            <div class="column is-multiline">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-image">
+                            <div class="image">
+                                <%= link_to movie.url, target: :_blank do %>
+                                    <p><%= movie.url %></p>
+                                <% end %>
+                                <p><%= movie.title %></p>
+                                <p><%= movie.comment %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</div>
