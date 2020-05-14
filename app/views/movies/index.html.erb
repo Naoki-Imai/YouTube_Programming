@@ -8,10 +8,14 @@
                         <div class="card-image">
                             <div class="image">
                                 <%= link_to movie.url, target: :_blank do %>
-                                    <p><%= movie.url %></p>
+                                    <iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{movie.url[32..-1]}" %>"  frameborder="0"></iframe>
                                 <% end %>
-                                <p><%= movie.title %></p>
+                                <%= link_to  movie_path(movie) do %>
+                                    <p><%= movie.title %></p>
+                                <% end %>
+                                <h2>コメント</h2>
                                 <p><%= movie.comment %></p>
+                                <h3><%= "紹介者：#{movie.user.username}" %></h3>
                             </div>
                         </div>
                     </div>

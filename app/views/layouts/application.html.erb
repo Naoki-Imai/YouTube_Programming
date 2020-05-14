@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YouPro</title>
+    <title>Programming YouTube Learning</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,8 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <p class="notice is-primary"><%= notice %></p>
+    <p class="alert is-danger"><%= alert  %></p>
     <nav class="navbar is-danger">
       <div class="navbar-brand">
         <%= link_to root_path class: "navbar-item" do %>
@@ -25,10 +25,10 @@
           <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item button" %>
         </p>
         <p class="content">
-          <%= link_to "おすすめ動画", movies_path, class: "nav-item button is-primary" %>
+          <%= link_to "おすすめ動画一覧", movies_path, class: "nav-item button is-primary" %>
         </p>
         <p class="content">
-          <%= link_to "おすすめ動画紹介", new_movie_path, class: "nav-item button is-primary" %>
+          <%= link_to "おすすめ動画投稿", new_movie_path, class: "nav-item button is-primary" %>
         </p>
       <% else %>
         <p class="content">
