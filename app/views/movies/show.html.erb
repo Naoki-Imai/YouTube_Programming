@@ -1,7 +1,14 @@
-<h1><%= @movie.title %></h1>
 <%= link_to @movie.url, target: :_blank do %>
-    <iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{@movie.url[32..-1]}" %>"  frameborder="0"></iframe>
+    <h1><%= @movie.title %></h1>
 <% end %>
+
+<iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{@movie.url[32..42]}" %>"  frameborder="0"></iframe>
+<% if current_user.already_favorites?(@movie) %>
+    <%= link_to 'いいねを外す', movie_favorites_path(@movie), method: :delete %>
+<% else%>
+    <%= link_to 'いいね', movie_favorites_path(@movie), method: :post %>
+<% end %>
+<%= @movie.favorites.count %>
 <p>コメント</p>
 <span><% @movie.comment%></span>
 

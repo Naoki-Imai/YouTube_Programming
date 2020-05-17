@@ -1,3 +1,4 @@
+
 // This is a manifest file that'll be compiled into application.js, which will include all the files
 // listed below.
 //
@@ -14,3 +15,11 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+for (const burger of document.getElementsByClassName('navbar-burger')) {
+  const menuId = burger.dataset.target;
+  const menu = document.getElementById(menuId);
+  burger.addEventListener('click', e => {
+    burger.classList.toggle('is-active');
+    menu.classList.toggle('is-active');
+  });
+}

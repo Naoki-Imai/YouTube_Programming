@@ -1,6 +1,35 @@
-<%= attachment_image_tag @user, :profile_image, fallback: "no-image.png"%>
-<strong><%= @user.username %></strong>
-<%= @user.profile %>
-<% if @user.id == current_user.id %>
-    <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
-<% end %>
+<section class="section">
+    <div class="container" >
+        <h1 class="subtitle">ユーザ紹介</h1>
+        <div class="columns">
+            <div class="column">
+                <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png"%>
+            </div>
+            <div class="column">
+                <p><strong><%= @user.username %></strong></p>
+                <p><%= @user.profile %></p>
+                <% if @user.id == current_user.id %>
+                    <%= link_to "編集", edit_user_path(@user), class: "button is-primary" %>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section">
+    <div class="container">
+        <% @user.movies.each do |movie| %>
+            <div class="columns">
+                <div class="column">
+                    <iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{movie.url[32..42]}" %>"  frameborder="0"></iframe>
+                </div>
+                <div class="column">
+                    <%= link_to  movie_path(movie) do %>
+                        <p><%= movie.title %></p>
+                    <% end %>
+                    <h2>コメント</h2>
+                    <p><%= movie.comment %></p>
+                </div>
+            </div>
+        <% end %>
+    </div>
+</section>

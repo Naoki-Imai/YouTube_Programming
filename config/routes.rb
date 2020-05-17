@@ -5,5 +5,8 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :users
   resources :movies
+  resources :movies do
+    resource :favorites, only: [:create, :destroy]
+  end
 
 end

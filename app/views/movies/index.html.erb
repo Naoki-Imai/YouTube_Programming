@@ -1,25 +1,23 @@
-<h1>駆け出しエンジニアおすすめ動画</h1>
 <div class="container">
+    <h1>駆け出しエンジニアおすすめ動画</h1>
     <div class="columns is-multiline">
-        <% @movies.each do |movie| %>
-            <div class="column is-multiline">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="card-image">
-                            <div class="image">
-                                <%= link_to movie.url, target: :_blank do %>
-                                    <iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{movie.url[32..-1]}" %>"  frameborder="0"></iframe>
-                                <% end %>
-                                <%= link_to  movie_path(movie) do %>
-                                    <p><%= movie.title %></p>
-                                <% end %>
-                                <h2>コメント</h2>
-                                <p><%= movie.comment %></p>
-                                <h3><%= "紹介者：#{movie.user.username}" %></h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <% @search_movies.each do |movie| %>
+            <div class="column">
+                <iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{movie.url[32..42]}" %>"  frameborder="0"></iframe>
+            </div>
+            <div class="column">
+                <%= link_to  movie_path(movie) do %>
+                    <p><%= movie.title %></p>
+                <% end %>
+                <% if current_user.already_favorites?(movie) %>
+                    <%= link_to 'いいねを外す', movie_favorites_path(movie), method: :delete %>
+                <% else%>
+                    <%= link_to 'いいね', movie_favorites_path(movie), method: :post %>
+                <% end %>
+                <%= movie.favorites.count %>
+                <h2>コメント</h2>
+                <p><%= movie.comment %></p>
+                <h3><%= "紹介者：#{movie.user.username}" %></h3>
             </div>
         <% end %>
     </div>

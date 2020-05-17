@@ -65,3 +65,5 @@ gem 'devise'
 gem "bulma-rails"
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+gem "ransack"
+gem 'pry-rails'

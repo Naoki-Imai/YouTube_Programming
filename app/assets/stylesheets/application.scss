@@ -14,3 +14,13 @@
  *= require_self
  */
  @import "bulma";
+
+ .logo {
+   color:red;
+   font-weight: bold;
+   line-height: 2rem;
+ }
+ .image {
+   width:250px;
+   height: 210px;
+ }

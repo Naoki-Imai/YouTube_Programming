@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   def index
     @movies = Movie.all
   end
@@ -13,7 +14,6 @@ class MoviesController < ApplicationController
 
   def create
     @movie = current_user.movies.build(movie_params)
-    @movie.url = @movie.url[32..-1]
     if @movie.save
       redirect_to movie_path(@movie), notice: "投稿しました"
     else
