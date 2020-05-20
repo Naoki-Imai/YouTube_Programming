@@ -1,4 +1,5 @@
 class FavoritesController < ApplicationController
+  
   def create
     # カレントユーザに結びついたいいねを作成する
     @favorite = current_user.favorites.create(movie_id: params[:movie_id])
