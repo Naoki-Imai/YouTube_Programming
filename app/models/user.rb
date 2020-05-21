@@ -8,8 +8,7 @@ class User < ApplicationRecord
   has_many :movies, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :reviews, dependent: :destroy
-
-  # いいねしたかしてないか判定
+  
   def already_favorites?(movie)
     self.favorites.exists?(movie_id: movie.id)
   end

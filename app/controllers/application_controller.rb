@@ -14,6 +14,12 @@ class ApplicationController < ActionController::Base
         end
         
     end
+
+    def search_current_user
+        if @user.id != current_user
+            redirect_to movie_path
+        end
+    end
     def after_sign_in_path_for(resource)
         movies_path
     end
