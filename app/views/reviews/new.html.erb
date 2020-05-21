@@ -1,0 +1,8 @@
+<div class="container">
+    <h1>レビュー投稿画面</h1>
+    <%= form_for @review, url: {action: "create"} do |f| %>
+        <%= f.label :body, "レビュー", class: "label" %>
+        <%= f.text_field :body, class: "input" %>
+        <%= f.submit "投稿", class: "button is-primary"%>
+    <% end %>
+</div>

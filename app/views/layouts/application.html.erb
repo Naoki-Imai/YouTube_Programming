@@ -1,43 +1,72 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>YouPro</title>
+    <title>Programming YouTube Learning</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <nav class="navbar is-danger">
+     <% if flash[:notice] %>
+      <div class="notification is-info">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="notification is-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <nav class="navbar is-dark">
       <div class="navbar-brand">
         <%= link_to root_path class: "navbar-item" do %>
-          <h1 class="title is-dark is-4" style="font-family: fantasy;">Programming YouTube Learning</h1>
+          <h1 class="logo is-dark" style="font-family: fantasy;">YouTube Programming Board</h1>
         <% end %>
-        <%= link_to "ユーザ一覧", users_path, class: "nav-item button is-primary" %>
+        <a role=" button " class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMenu">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
       </div>
-
-      <% if user_signed_in? %>
-        <p class="content">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item button" %>
-        </p>
-        <p class="content">
-          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
-        </p>
-        <p class="content">
-          <%= link_to "おすすめ動画紹介", movies_path, class: "nav-item button is-primary" %>
-        </p>
-      <% else %>
-        <p class="content">
-          <%= link_to "ログイン", new_user_session_path, class: " nav-item button" %>
-        </p>
-        <p class="content">
-          <%= link_to "新規登録", new_user_registration_path, class: " nav-item button" %>
-        </p>
-      <% end %>
+      <div id="navbarMenu" class="navbar-menu">
+        
+        <% if user_signed_in? %>
+          <div class="navbar-start">
+            <%= link_to "ユーザ一覧", users_path, class: "nav-item is-light" %>
+            <p class="content">
+              <%= link_to "おすすめ動画一覧", movies_path, class: "nav-item is-light" %>
+            </p>
+            <p class="content">
+              <%= link_to "おすすめ動画投稿", new_movie_path, class: "nav-item is-light" %>
+            </p>
+            <%= search_form_for @search do |f| %>
+              <%= f.search_field :title_cont, placefolder: 'タイトル名を入力...' %>
+              <%= f.submit "検索" %>
+            <% end %>
+            <div class="content">
+              <p><%= "ユーザ名：#{current_user.username}さん" %></p>
+            </div>
+          </div>
+          <div class="navbar-end">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-item button" %>
+          </div>
+        <% else %>
+            <div class="navbar-end">
+              <%= link_to "ログイン", new_user_session_path, class: " nav-item button" %>
+              <%= link_to "新規登録", new_user_registration_path, class: " nav-item button" %>
+            </div>
+        <% end %>
+        
+      </div>
+      
     </nav>
       
     <%= yield %>

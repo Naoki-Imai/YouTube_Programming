@@ -1,3 +1,24 @@
-<h1><%= @movie.title %></h1>
+<%= link_to @movie.url, target: :_blank do %>
+    <h1><%= @movie.title %></h1>
+<% end %>
 
-<p><<%= @movie.comment %></p>
+<iframe id="player" type="text/html" width="640" height="390" allowfullscreen: true src="<%= "https://www.youtube.com/embed/#{@movie.url[32..42]}" %>"  frameborder="0"></iframe>
+<p>コメント</p>
+<span><% @movie.comment%></span>
+<% if current_user.already_favorites?(@movie) %>
+    <%= link_to 'いいねを外す', movie_favorites_path(@movie), method: :delete %>
+<% else%>
+    <%= link_to 'いいね', movie_favorites_path(@movie), method: :post %>
+    
+<% end %>
+    <%=  @movie.favorites.count %>
+<% @reviews.each do |review| %>
+    <p><%= review.body %></p>
+<% end %>
+<%= link_to 'レビューを投稿する', new_movie_review_path(@movie) %>
+
+<% if @movie.user_id == current_user.id %>
+    <%= link_to "編集", edit_movie_path(@movie), class: "button is-primary" %>
+    <%= link_to "削除", movie_path, method: :delete, class: "button is-danger"%>
+<% end %>
+

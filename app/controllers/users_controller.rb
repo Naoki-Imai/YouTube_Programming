@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :index_current_user, {only:[:edit, :update]}
+  
   def index
     @users = User.all
   end
